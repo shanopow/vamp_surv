@@ -44,6 +44,7 @@ evolves = object_builder(json_blob, "__main__.Evolve", "Evolve")
 
 count = 1;
 final_dict = final_object_builder(weapons + items + unions + evolves, count)
+banned = ["Crimson Shroud", "Infinite Corridor", "Silver Ring", "Gold Ring", "Metaglio Left", "Metaglio Right"]
 # main loop
 while True:
     final = Loadout()
@@ -53,15 +54,27 @@ while True:
         chose = input()
         stuck = False
     print("You selected:", chose)
-    final.extra_weapon =  [item for item in weapons if chose in item.locations]
-    final.extra_item = [item for item in items if chose in item.locations]
+    final.extra_weapon =  [item for item in weapons if chose in item.locations and item.name not in banned]
+    final.extra_item = [item for item in items if chose in item.locations and item.name not in banned]
 
     # always get the corrosponding items for these weapons on the map
-    for item in final.extra_weapon + final.extra_item:
+    for finder in final.extra_weapon + final.extra_item:
         # find any evolutions that use this weapon / armour
-        for each in evolves:
-            if (item.name in each.weapon) or (item.name in each.item) and (each not in final.base_evolves):
+        for each in evolves + unions:
+            if (finder.name in each.weapon) or (finder.name in each.item) and (each not in final.base_evolves):
                 final.base_evolves.append(each)
-    for item in final.base_evolves:
-        print(item.name)
+                # get all the other items associated with this evolve / union and add to the their weapon and item lists
+                for extra in each.item + each.weapon:
+                        if extra != finder.name:
+                            if extra in each.weapon and len(final.base_weapon) < 6:
+                                final.base_weapon.append(extra)
+                            elif extra in each.item and len(final.base_item) < 6:
+                                final.base_item.append(extra)
+    
+    print("ITEMS:")
+    for item in final.base_item:
+        print(item)
+    print("\nWEAPONS:")
+    for item in final.base_weapon:
+        print(item)
     quit()

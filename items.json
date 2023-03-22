@@ -215,15 +215,23 @@
     "Union": {
         "Tri-Bracelet":{
             "name":"Tri-Bracelet",
-            "weapon" : ["Bi-Bracelet"]
+            "weapon" : ["Bi-Bracelet"],
+            "item" : []
         },
         "Bi-Bracelet":{
             "name":"Bi-Bracelet",
-            "weapon" : ["Bracelet"]
+            "weapon" : ["Bracelet"],
+            "item" : []
         },
         "Vanderlier":{
             "name":"Vanderlier",
-            "weapon" : ["Ebony Wings", "Peachone"]
+            "weapon" : ["Ebony Wings", "Peachone"],
+            "item" : []
+        },
+        "Fuwalafuwaloo":{
+            "name":"Fuwalafuwaloo",
+            "weapon" : ["Vento Sacro", "Bloody Tear"],
+            "item" : []
         }
 
     },
@@ -275,7 +283,7 @@
         "La Borra":{
             "name":"La Borra",
             "weapon" : ["Santa Water"],
-            "item" : ["Attractorb"]
+            "item" : ["Attract Orb"]
         },
         
         "Thunder Loop":{
@@ -305,11 +313,11 @@
         },
         "Vicious Hunger":{
             "name":"Vicious Hunger",
-            "weapon" : ["Gatti Aari"],
+            "weapon" : ["Gatti Amari"],
             "item" : ["Stone Mask"]
         },
         "Valkyrie Turner":{
-            "name":"Valkaryie Turner",
+            "name":"Valkyrie Turner",
             "weapon" : ["Shadow Pinion"],
             "item" : ["Wings"]
         },
@@ -322,11 +330,6 @@
             "name":"Infinite Corridor",
             "weapon" : ["Clock Lancet"],
             "item" : ["Silver Ring", "Gold Ring"]
-        },
-        "Fuwalafuwaloo":{
-            "name":"Fuwalafuwaloo",
-            "weapon" : ["Vento Sacro"],
-            "item" : ["Bloody Tear"]
         },
 
         "Sole Solution":{

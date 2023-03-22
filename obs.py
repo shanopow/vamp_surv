@@ -18,6 +18,7 @@ class Union(object):
     def __init__(self, holder):
         self.name = holder["name"]
         self.weapon = holder["weapon"]
+        self.item = holder["item"]
 
 class Loadout(object):
     def __init__(self):
