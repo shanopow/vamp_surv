@@ -70,10 +70,7 @@ while True:
     for finder in final.extra_weapon + final.extra_item:
         # find any evolutions that use this weapon / armour
         for each in evolves + unions:
-            if (finder.name in each.weapon) or (finder.name in each.item) and (each not in final.base_evolves):
-                final.base_evolves.append(each)
-                # get all the other items associated with this evolve / union and add to the their weapon and item lists
-                final.loadout_filler(finder, each)
+            final.fill_evolve(finder, evolves + unions)
     
     
     

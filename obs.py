@@ -29,11 +29,18 @@ class Loadout(object):
         self.extra_weapon = []
         self.extra_item = []
 
-    def loadout_filler(self, finder, each):
-        for extra in each.weapon + each.item:
-            if extra != finder.name:
-                if extra in each.weapon and len(self.base_weapon) < 6:
-                    self.base_weapon.append(extra)
-                elif extra in each.item and len(self.base_item) < 6:
-                    self.base_item.append(extra)
 
+    def fill_loadout(self, finder, evolve):
+        for item in evolve.weapon + evolve.item:
+            if item != finder.name:
+                if item in evolve.weapon and len(self.base_weapon) < 6:
+                    self.base_weapon.append(item)
+                elif item in evolve.item and len(self.base_item) < 6:
+                    self.base_item.append(item)
+
+
+    def fill_evolve(self, finder, evolve_list):
+        for evolve in evolve_list:
+            if (finder.name in evolve.weapon or finder.name in evolve.item) and evolve not in self.base_evolves:
+                self.base_evolves.append(evolve)
+                self.fill_loadout(finder, evolve)
