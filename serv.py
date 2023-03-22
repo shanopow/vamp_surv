@@ -36,6 +36,20 @@ def final_object_builder(mashed_list, count):
         count += 1
     return final_dict
 
+
+
+# work done inside the  main while loop
+def input_taker():
+    stuck = True
+    while stuck:
+        print("Enter a map:")
+        chose = input()
+        stuck = False
+    print("You selected:", chose)
+    return chose
+
+
+
 json_blob = file_reader("items.json")
 weapons = object_builder(json_blob, "__main__.Weapon", "Weapon") 
 items = object_builder(json_blob, "__main__.Item", "Item")
@@ -48,12 +62,7 @@ banned = ["Crimson Shroud", "Infinite Corridor", "Silver Ring", "Gold Ring", "Me
 # main loop
 while True:
     final = Loadout()
-    stuck = True
-    while stuck:
-        print("Enter a map:")
-        chose = input()
-        stuck = False
-    print("You selected:", chose)
+    chose = input_taker()
     final.extra_weapon =  [item for item in weapons if chose in item.locations and item.name not in banned]
     final.extra_item = [item for item in items if chose in item.locations and item.name not in banned]
 
@@ -64,12 +73,9 @@ while True:
             if (finder.name in each.weapon) or (finder.name in each.item) and (each not in final.base_evolves):
                 final.base_evolves.append(each)
                 # get all the other items associated with this evolve / union and add to the their weapon and item lists
-                for extra in each.item + each.weapon:
-                        if extra != finder.name:
-                            if extra in each.weapon and len(final.base_weapon) < 6:
-                                final.base_weapon.append(extra)
-                            elif extra in each.item and len(final.base_item) < 6:
-                                final.base_item.append(extra)
+                final.loadout_filler(finder, each)
+    
+    
     
     print("ITEMS:")
     for item in final.base_item:

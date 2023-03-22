@@ -28,3 +28,12 @@ class Loadout(object):
         # weapons / items already on the map to take
         self.extra_weapon = []
         self.extra_item = []
+
+    def loadout_filler(self, finder, each):
+        for extra in each.weapon + each.item:
+            if extra != finder.name:
+                if extra in each.weapon and len(self.base_weapon) < 6:
+                    self.base_weapon.append(extra)
+                elif extra in each.item and len(self.base_item) < 6:
+                    self.base_item.append(extra)
+
