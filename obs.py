@@ -30,6 +30,13 @@ class Loadout(object):
         self.extra_item = []
 
 
+    # while our loadouts are not fully finished, fill them out
+    def finish_loadout(self):
+        while len(self.base_weapon) < 6:
+            self.base_weapon.append("Free")
+        while len(self.base_item) < 6:
+            self.base_item.append("Free")
+
     def fill_loadout(self, finder, evolve):
         for item in evolve.weapon + evolve.item:
             if item != finder.name:
@@ -37,7 +44,6 @@ class Loadout(object):
                     self.base_weapon.append(item)
                 elif item in evolve.item and len(self.base_item) < 6:
                     self.base_item.append(item)
-
 
     def fill_evolve(self, finder, evolve_list):
         for evolve in evolve_list:

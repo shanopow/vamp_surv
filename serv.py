@@ -36,8 +36,6 @@ def final_object_builder(mashed_list, count):
         count += 1
     return final_dict
 
-
-
 # work done inside the  main while loop
 def input_taker():
     stuck = True
@@ -71,9 +69,10 @@ while True:
         # find any evolutions that use this weapon / armour
         for each in evolves + unions:
             final.fill_evolve(finder, evolves + unions)
-    
-    
-    
+    final.finish_loadout()
+
+
+
     print("ITEMS:")
     for item in final.base_item:
         print(item)
